@@ -2,13 +2,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import CommentList from './components/comments/comment-list';
-import Seasons from './demos/seasons/seasons';
+// import Seasons from './demos/seasons/seasons';
+import Pics from './demos/pics/pics';
 
 // Create a function react component
 const App = () => {
     return (
         <div>
-            <Seasons />
+            <Pics />
         </div>
     );
 };

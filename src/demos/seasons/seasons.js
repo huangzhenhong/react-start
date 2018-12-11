@@ -1,15 +1,25 @@
 import React from 'react';
 import SeasonDisplay from './season-display';
+import Spinner from '../../components/spinner';
 
 class Seasons extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            latitude: null,
-            longtitude: null,
-            errorMessage: ''
-        };
+    state = {
+        latitude: null,
+        longtitude: null,
+        errorMessage: ''
+    };
+
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         latitude: null,
+    //         longtitude: null,
+    //         errorMessage: ''
+    //     };
+    // }
+
+    componentDidMount() {
         this.getUserLocation();
     }
 
@@ -32,23 +42,27 @@ class Seasons extends React.Component {
         );
     }
 
-    render() {
-        let error;
-        if(this.state.errorMessage) {
-            error = 'Error: ' + this.state.errorMessage; 
-        }else {
-            error = '';
+    renderContent() {
+        if(this.state.errorMessage && !this.state.latitude) {
+            return <div>Error: {this.state.errorMessage}</div>;
         }
-        return (
-            <div>
-                <SeasonDisplay 
-                    latitude={this.state.latitude} 
-                    longtitude={this.state.longtitude} 
-                />
-                <br />
-                {error}
-            </div>
-        );
+        if(!this.state.errorMessage && this.state.latitude) {
+            return (
+                    <SeasonDisplay 
+                        latitude={this.state.latitude} 
+                        longtitude={this.state.longtitude} 
+                    />
+            );
+        }
+        return <Spinner message="Please accept location request"/>;
+    }
+
+    render() {
+     return (
+        <div>
+            {this.renderContent()}
+        </div>
+        );   
     }
 };
 
