@@ -3,13 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import CommentList from './components/comments/comment-list';
 // import Seasons from './demos/seasons/seasons';
-import Pics from './demos/pics/pics';
+// import Pics from './demos/pics/pics';
+import Videos from './demos/videos/videos';
 
 // Create a function react component
 const App = () => {
     return (
         <div>
-            <Pics />
+            <Videos />
         </div>
     );
 };
